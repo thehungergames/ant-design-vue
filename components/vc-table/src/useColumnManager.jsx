@@ -4,6 +4,9 @@ export default function useColumnManager(columns) {
     const leafColumns = [];
     cls.forEach(column => {
       column.fixed = fixed || column.fixed;
+      // Convert `fixed='true'` to `fixed='left'` instead
+      const parsedFixed = column.fixed === true ? 'left' : column.fixed;
+      column.fixed = parsedFixed;
       if (!column.children) {
         leafColumns.push(column);
       } else {
